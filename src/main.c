@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "../lib/MLX/include/MLX42/MLX42.h"
+#include "../lib/MLX42/include/MLX42/MLX42.h"
 #define WIDTH 256
 #define HEIGHT 256
 

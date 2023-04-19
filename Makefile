@@ -13,7 +13,7 @@
 NAME	:=	so_long
 
 LIBFT_D	:=	lib/libft
-LIBMLX_D:=	lib/MLX
+LIBMLX_D:=	lib/MLX42
 
 LIBFT	:=	${LIBFT_D}/libft.a
 LIBMLX	:=	${LIBMLX_D}/build/libmlx42.a
