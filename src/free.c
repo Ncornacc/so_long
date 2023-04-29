@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ncornacc <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,26 +12,43 @@
 
 #include "../includes/so_long.h"
 
-int	main(int argc, char **argv)
+void	ft_free_game(t_game *game)
 {
-	t_game	*game;
-
-	ft_verify_argc(argc);
-	game = malloc(sizeof(t_game));
-	if (!game)
-		ft_print_error_msg(YELLOW"MALLOC ERROR");
-	ft_verify_mapname(argv[1]);
-	ft_read_map(argv[1], game);
-	ft_validate_map(game);
-	ft_init_vars(game);
-	ft_verify_map(game->map, game);
-	game->mlx = mlx_init(game->rows * PIXELS, game->columns * PIXELS, "So_Loong", false);
-	ft_create_textures(game);
-	ft_draw_map(game->mlx, game);
-	mlx_key_hook(game->mlx, (mlx_keyfunc)ft_movement, game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	ft_free_game(game);
-	return (EXIT_SUCCESS);
+	mlx_delete_image(game->mlx, game->floor);
+	mlx_delete_image(game->mlx, game->wall);
+	mlx_delete_image(game->mlx, game->collectables);
+	mlx_delete_image(game->mlx, game->player);
+	mlx_delete_image(game->mlx, game->exit);
+	free(game->map);
+	mlx_close_window(game->mlx);
+	exit(EXIT_SUCCESS);
 }
-	
+
+void	ft_free_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->rows)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	game->map = NULL;
+}
+
+
+void	ft_print_error_msg(char *string)
+{
+	write(1, RED"ERROR\n", 6);
+	write(1, string, ft_strlen(string));
+	exit(EXIT_FAILURE);
+}
+
+void	ft_open_exit(t_game *game)
+{
+
+	ft_printf("You finish the game with %d moves", game->count_moves);
+	ft_free_game(game);
+}
