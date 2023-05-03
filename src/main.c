@@ -16,22 +16,16 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	ft_verify_argc(argc);
+	ft_check_argc(argc);
 	game = malloc(sizeof(t_game));
 	if (!game)
-		ft_print_error_msg(YELLOW"MALLOC ERROR");
+		ft_print_error_msg(YELLOW"MALLOC ERROR\n");
 	ft_verify_mapname(argv[1]);
 	ft_read_map(argv[1], game);
-	ft_validate_map(game);
+	ft_control_map(game);
 	ft_init_vars(game);
 	ft_verify_map(game->map, game);
-	game->mlx = mlx_init(game->rows * PIXELS, game->columns * PIXELS, "So_Loong", false);
-	ft_create_textures(game);
-	ft_draw_map(game->mlx, game);
-	mlx_key_hook(game->mlx, (mlx_keyfunc)ft_movement, game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	ft_free_game(game);
+	ft_create_window(game);
 	return (EXIT_SUCCESS);
 }
 	

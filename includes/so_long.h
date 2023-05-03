@@ -35,8 +35,11 @@ typedef struct s_game
 	mlx_t				*mlx;
 	char				**map;
 	char				**map_copy;
+	int					orientation;
 	int					rows;
 	int					columns;
+	int					window_x;
+	int					window_y;
 	int					move_x;
 	int					move_y;
 	int					count_player;
@@ -68,6 +71,7 @@ void	ft_init_vars(t_game *game);
 void	ft_create_textures(t_game *game);
 void	ft_check_argc(int argc);
 void	ft_control_map(t_game *game);
+void	ft_create_window(t_game *game);
 
 
 
@@ -77,7 +81,9 @@ void	ft_move_up(t_game *game);
 void	ft_move_down(t_game *game);
 void	ft_move_left(t_game *game);
 void	ft_move_right(t_game *game);
-
+void	ft_check_map_values(t_game *game);
+void	ft_player_right(t_game *game);
+void	ft_player_left(t_game *game);
 
 
 /*--------------DRAWING MAP FUNCTIONS-------------------------*/

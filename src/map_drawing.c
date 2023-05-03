@@ -20,7 +20,7 @@ void	ft_draw_collectable(mlx_t *mlx, int rows, int columns, t_game *game)
 }
 
 
-void	draw_player(mlx_t *mlx, int rows, int columns, t_game *game)
+void	ft_draw_player(mlx_t *mlx, int rows, int columns, t_game *game)
 {
 	mlx_image_to_window(mlx, game->floor, columns * PIXELS, rows * PIXELS);
 	mlx_image_to_window(mlx, game->player, columns * PIXELS, rows * PIXELS);

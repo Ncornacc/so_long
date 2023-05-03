@@ -46,7 +46,7 @@ void	ft_verify_map(char **map, t_game *game)
 			if ((i == 0 || i == game->rows - 1)
 				|| (x == 0 || x == game->columns - 1))
 				if (map[i][x] != '1')
-					ft_print_error_msg(YELLOW"Map is not closed");
+					ft_print_error_msg(YELLOW"Map is not closed!\n");
 		}
 	}
 	ft_check_items(game);

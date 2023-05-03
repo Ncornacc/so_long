@@ -41,14 +41,13 @@ void	ft_free_map(t_game *game)
 
 void	ft_print_error_msg(char *string)
 {
-	write(1, RED"ERROR\n", 6);
-	write(1, string, ft_strlen(string));
+	ft_printf(RED"ERROR: %s", string);
 	exit(EXIT_FAILURE);
 }
 
 void	ft_open_exit(t_game *game)
 {
 
-	ft_printf("You finish the game with %d moves", game->count_moves);
+	ft_printf(GREEN"\nYou finish the game with %d moves", game->count_moves);
 	ft_free_game(game);
 }

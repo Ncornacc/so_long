@@ -16,6 +16,7 @@ void	ft_init_vars(t_game *game)
 {
 	game->rows = 0;
 	game->columns = 0;
+	game->orientation = 0;
 	game->move_x = 0;
 	game->move_y = 0;
 	game->count_player = 0;
@@ -40,7 +41,7 @@ void	ft_create_textures(t_game *game)
 	game->swap_png = mlx_load_png("assets/sprites/weed.png");
 	game->collectables = mlx_texture_to_image(game->mlx, game->swap_png);
 	mlx_delete_texture(game->swap_png);
-	game->swap_png = mlx_load_png("assets/sprites/floor.png");
+	game->swap_png = mlx_load_png("assets/sprites/player_right.png");
 	game->player = mlx_texture_to_image(game->mlx, game->swap_png);
 	mlx_delete_texture(game->swap_png);
 	game->swap_png = mlx_load_png("assets/sprites/exit.png");
@@ -49,15 +50,15 @@ void	ft_create_textures(t_game *game)
 }
 
 
-void	ft_verify_argc(int argc)
+void	ft_check_argc(int argc)
 {
 	if (argc > 2)
-		ft_print_error_msg(YELLOW"Too many arguments");
+		ft_print_error_msg(YELLOW"Too many arguments\n");
 	if (argc < 2)
-		ft_print_error_msg(YELLOW"NO mapfile, ERROR");
+		ft_print_error_msg(YELLOW"NO mapfile, you have to input one!\n");
 }
 
-void	ft_validate_map(t_game *game)
+void	ft_control_map(t_game *game)
 {
 	int	x;
 	int	y;
@@ -69,12 +70,25 @@ void	ft_validate_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (ft_strchr("PEC01", game->map[y][x]) == NULL)
-			{
-				free(game);
-				ft_print_error_msg(YELLOW"Invalid characters! acceptable ones: P,E,C,0,1");
-			}
+				ft_print_error_msg(YELLOW"Invalid characters! acceptable ones: P,E,C,0,1\n");
 			x++;
 		}
 		y++;
 	}
+}
+
+void	ft_create_window(t_game *game)
+{
+	game->window_x = (game->columns * PIXELS);
+	game->window_y = (game->rows * PIXELS);
+	game->mlx = mlx_init(game->window_y, game->window_x, "so_long", true);
+	if(!game->mlx)
+		ft_print_error_msg("Failed window Creation!");
+	ft_create_textures(game);
+	ft_draw_map(game->mlx, game);
+	mlx_key_hook(game->mlx, (mlx_keyfunc)ft_movement, game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
+	ft_free_game(game);
+	return;
 }

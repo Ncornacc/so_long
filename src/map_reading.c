@@ -74,7 +74,7 @@ void	ft_flood_fill(t_game *game, int move_x, int move_y)
 
 void	ft_to_fill(t_game *game, int move_x, int move_y)
 {
-	flood_fill(game, move_x, move_y);
+	ft_flood_fill(game, move_x, move_y);
 }
 
 

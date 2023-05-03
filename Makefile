@@ -19,7 +19,7 @@ LIBFT	:=	${LIBFT_D}/libft.a
 LIBMLX	:=	${LIBMLX_D}/build/libmlx42.a
 
 CC		:=	gcc
-HEAD	:= -Iincludes -I ${LIBFT_D}/include -I ${LIBMLX_D}/include
+HEAD	:= -I includes -I ${LIBFT_D}/include -I ${LIBMLX_D}/include
 FLAGS	:=	-Wall -Werror -Wextra
 
 LFLAGS := -L${LIBMLX_D}/build -lmlx42 -L${LIBFT_D} -lft
@@ -37,7 +37,7 @@ RM		:=	rm	-rf
 OBJ_DIR	:=	obj/
 SRC_DIR	:=	src/
 
-FILE	:=	main
+FILE	:=	main free input initialization map_check map_drawing map_reading move
 
 SRC		:=	${addprefix ${SRC_DIR}, ${addsuffix .c, ${FILE}}}
 OBJ		:=	${addprefix ${OBJ_DIR}, ${addsuffix .o, ${FILE}}}
@@ -68,7 +68,7 @@ ${LIBFT}:
 
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c
 	@mkdir -p ${OBJ_DIR}
-	@${CC} ${FLAGS} ${HEAD} -o $@ -c $^ && printf "${YELLOW} Compiling: $(notdir $<) ${DEF_COLOR}"
+	@${CC} ${FLAGS} ${HEAD} -o $@ -c $< && printf "${YELLOW} Compiling: $(notdir $<) ${DEF_COLOR}"
 
 ${NAME}: ${OBJ}
 	@${CC} ${CFLAG} ${HEAD} ${OBJ} ${LFLAGS} -o ${NAME}
