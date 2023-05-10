@@ -55,7 +55,6 @@ void	ft_verify_map(char **map, t_game *game)
 	ft_verify_win(game);
 }
 
-
 void	ft_check_items(t_game *game)
 {
 	int	x;
@@ -115,5 +114,4 @@ void	ft_count_column(t_game *game)
 			return ;
 		i++;
 	}
-
 }

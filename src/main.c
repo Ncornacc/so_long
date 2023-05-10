@@ -28,4 +28,3 @@ int	main(int argc, char **argv)
 	ft_create_window(game);
 	return (EXIT_SUCCESS);
 }
-	

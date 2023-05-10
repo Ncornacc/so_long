@@ -12,13 +12,12 @@
 
 #include "../includes/so_long.h"
 
-
 void	ft_draw_collectable(mlx_t *mlx, int rows, int columns, t_game *game)
 {
 	mlx_image_to_window(mlx, game->floor, columns * PIXELS, rows * PIXELS);
-	mlx_image_to_window(mlx, game->collectables, columns * PIXELS, rows * PIXELS);
+	mlx_image_to_window(mlx, game->collectables, columns * PIXELS,
+		rows * PIXELS);
 }
-
 
 void	ft_draw_player(mlx_t *mlx, int rows, int columns, t_game *game)
 {
@@ -28,13 +27,11 @@ void	ft_draw_player(mlx_t *mlx, int rows, int columns, t_game *game)
 	game->move_y = columns;
 }
 
-
 void	ft_draw_exit(mlx_t *mlx, int rows, int columns, t_game *game)
 {
 	mlx_image_to_window(mlx, game->floor, columns * PIXELS, rows * PIXELS);
 	mlx_image_to_window(mlx, game->exit, columns * PIXELS, rows * PIXELS);
 }
-
 
 void	ft_draw_map(mlx_t *mlx, t_game *game)
 {

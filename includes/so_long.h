@@ -20,6 +20,8 @@
 # include "fcntl.h"
 
 # define PIXELS 32
+# define EXIT_SUCCESS 0
+# define EXIT_FAIL 1
 
 # define DEF_COLOR "\033[0;39m"
 # define GRAY "\033[0;90m"
@@ -57,7 +59,6 @@ typedef struct s_game
 	mlx_image_t			*exit;
 }			t_game;
 
-
 /*--------------FREE AND ERROR FUNCTIONS----------------------*/
 void	ft_free_game(t_game *game);
 void	ft_free_map(t_game *game);
@@ -65,15 +66,12 @@ void	ft_free_images(t_game *game);
 void	ft_print_error_msg(char *string);
 void	ft_open_exit(t_game *game);
 
-
 /*--------------INITIALIZATION FUNCTIONS-------------------------*/
 void	ft_init_vars(t_game *game);
 void	ft_create_textures(t_game *game);
 void	ft_check_argc(int argc);
 void	ft_control_map(t_game *game);
 void	ft_create_window(t_game *game);
-
-
 
 /*--------------MOVEMENT AND INPUT(hooks) FUNCTIONS---------------*/
 void	ft_movement(mlx_key_data_t key_stroke, t_game *game);
@@ -85,14 +83,11 @@ void	ft_check_map_values(t_game *game);
 void	ft_player_right(t_game *game);
 void	ft_player_left(t_game *game);
 
-
 /*--------------DRAWING MAP FUNCTIONS-------------------------*/
 void	ft_draw_collectable(mlx_t *mlx, int rows, int columns, t_game *game);
 void	ft_draw_player(mlx_t *mlx, int rows, int columns, t_game *game);
 void	ft_draw_exit(mlx_t *mlx, int rows, int columns, t_game *game);
 void	ft_draw_map(mlx_t *mlx, t_game *game);
-
-
 
 /*--------------READING MAP FUNCTIONS----------------------------*/
 void	ft_read_map(char *map_file, t_game *game);
@@ -101,8 +96,6 @@ void	ft_to_fill(t_game *game, int move_x, int move_y);
 void	ft_player_position(t_game *game, int *player_x, int *player_y);
 void	ft_verify_win(t_game *game);
 char	*ft_stringjoin(char *s1, char const *s2);
-
-
 
 /*--------------CHECK MAP FUNCTIONS----------------------------*/
 void	ft_verify_mapname(char *map_name);

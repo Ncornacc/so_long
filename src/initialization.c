@@ -28,8 +28,6 @@ void	ft_init_vars(t_game *game)
 	game->player_y = 0;
 }
 
-// We use swap_png to load the initial texture and then use that value to load it into an Image.
-// Afterwards we free it so we could use it again.
 void	ft_create_textures(t_game *game)
 {
 	game->swap_png = mlx_load_png("assets/sprites/floor.png");
@@ -48,7 +46,6 @@ void	ft_create_textures(t_game *game)
 	game->exit = mlx_texture_to_image(game->mlx, game->swap_png);
 	mlx_delete_texture(game->swap_png);
 }
-
 
 void	ft_check_argc(int argc)
 {
@@ -70,7 +67,7 @@ void	ft_control_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (ft_strchr("PEC01", game->map[y][x]) == NULL)
-				ft_print_error_msg(YELLOW"Invalid characters! acceptable ones: P,E,C,0,1\n");
+				ft_print_error_msg(YELLOW"Invalid characters!\n");
 			x++;
 		}
 		y++;
@@ -79,11 +76,10 @@ void	ft_control_map(t_game *game)
 
 void	ft_create_window(t_game *game)
 {
-
 	game->window_x = game->rows * PIXELS;
 	game->window_y = (game->columns * 32);
 	game->mlx = mlx_init(game->window_y, game->window_x, "so_long", 0);
-	if(!game->mlx)
+	if (!game->mlx)
 		ft_print_error_msg("Failed window Creation!");
 	ft_create_textures(game);
 	ft_draw_map(game->mlx, game);
@@ -91,5 +87,5 @@ void	ft_create_window(t_game *game)
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	ft_free_game(game);
-	return;
+	return ;
 }

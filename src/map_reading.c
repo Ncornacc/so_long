@@ -12,8 +12,6 @@
 
 #include "../includes/so_long.h"
 
-//OPEN MAP AND USE STR_JOIN AND FT_SPLIT TO INSERT IT INTO A 2D ARRAY, THEN CHECK FOR ERROR
-
 char	*ft_stringjoin(char *s1, char const *s2)
 {
 	int		total_len;
@@ -47,16 +45,12 @@ void	ft_read_map(char *argv, t_game *game)
 
 	fd_map = open(argv, O_RDONLY);
 	string = ft_calloc(1, sizeof(char));
-	if(!string)
+	if (!string)
 		ft_print_error_msg("Empty file");
-
 	big_string = ft_strdup("");
-
 	if (fd_map == -1)
 		ft_print_error_msg("File error or empty");
-
 	string = get_next_line(fd_map);
-
 	if (!string)
 		ft_print_error_msg("Empty file");
 	while (string)
@@ -70,7 +64,7 @@ void	ft_read_map(char *argv, t_game *game)
 	game->map_copy = ft_split(big_string, '\n');
 }
 
-int		ft_flood_fill(t_game *game, int move_x, int move_y)
+int	ft_flood_fill(t_game *game, int move_x, int move_y)
 {
 	if (game->map_copy[move_x][move_y] == 'E')
 		game->count_exit--;
@@ -79,28 +73,23 @@ int		ft_flood_fill(t_game *game, int move_x, int move_y)
 	if (game->count_collectables == 0 && game->count_exit == 0)
 		return (1);
 	game->map_copy[move_x][move_y] = '&';
-	if (game->map_copy[move_x][move_y - 1] != '&' && game->map_copy[move_x][move_y - 1] != '1')
-		{
-		if(ft_flood_fill(game, move_x, move_y - 1) == 1)
+	if (game->map_copy[move_x][move_y - 1] != '&'
+		&& game->map_copy[move_x][move_y - 1] != '1')
+		if (ft_flood_fill(game, move_x, move_y - 1) == 1)
 			return (1);
-		}
-	if (game->map_copy[move_x][move_y + 1] != '&' && game->map_copy[move_x][move_y + 1] != '1')
-		{
-		if(ft_flood_fill(game, move_x, move_y + 1) == 1)
+	if (game->map_copy[move_x][move_y + 1] != '&'
+		&& game->map_copy[move_x][move_y + 1] != '1')
+		if (ft_flood_fill(game, move_x, move_y + 1) == 1)
 			return (1);
-		}
-	if (game->map_copy[move_x - 1][move_y] != '&' && game->map_copy[move_x - 1][move_y] != '1')
-		{
-		if(ft_flood_fill(game, move_x - 1, move_y) == 1)
+	if (game->map_copy[move_x - 1][move_y] != '&'
+		&& game->map_copy[move_x - 1][move_y] != '1')
+		if (ft_flood_fill(game, move_x - 1, move_y) == 1)
 			return (1);
-		}
-	if (game->map_copy[move_x + 1][move_y] != '&' && game->map_copy[move_x + 1][move_y] != '1')
-		{
-		if(ft_flood_fill(game, move_x + 1, move_y) == 1)
+	if (game->map_copy[move_x + 1][move_y] != '&'
+		&& game->map_copy[move_x + 1][move_y] != '1')
+		if (ft_flood_fill(game, move_x + 1, move_y) == 1)
 			return (1);
-		}
 	return (-1);
-
 }
 
 void	ft_player_position(t_game *game, int *player_x, int *player_y)
@@ -125,7 +114,6 @@ void	ft_player_position(t_game *game, int *player_x, int *player_y)
 	}
 }
 
-
 void	ft_verify_win(t_game *game)
 {
 	int		player_x;
@@ -138,7 +126,7 @@ void	ft_verify_win(t_game *game)
 	y = 0;
 	temporary_value = game->count_collectables;
 	ft_player_position(game, &player_x, &player_y);
-	if(ft_flood_fill(game, player_x, player_y) == -1)
+	if (ft_flood_fill(game, player_x, player_y) == -1)
 		ft_print_error_msg(YELLOW"There is no posible way to win");
 	game->count_collectables = temporary_value;
 }
