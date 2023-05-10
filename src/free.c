@@ -20,6 +20,7 @@ void	ft_free_game(t_game *game)
 	mlx_delete_image(game->mlx, game->player);
 	mlx_delete_image(game->mlx, game->exit);
 	free(game->map);
+	free(game->map_copy);
 	mlx_close_window(game->mlx);
 	exit(EXIT_SUCCESS);
 }

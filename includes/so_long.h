@@ -96,10 +96,11 @@ void	ft_draw_map(mlx_t *mlx, t_game *game);
 
 /*--------------READING MAP FUNCTIONS----------------------------*/
 void	ft_read_map(char *map_file, t_game *game);
-void	ft_flood_fill(t_game *game, int column, int line);
+int		ft_flood_fill(t_game *game, int column, int line);
 void	ft_to_fill(t_game *game, int move_x, int move_y);
 void	ft_player_position(t_game *game, int *player_x, int *player_y);
 void	ft_verify_win(t_game *game);
+char	*ft_stringjoin(char *s1, char const *s2);
 
 
 

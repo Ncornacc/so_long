@@ -64,7 +64,7 @@ void	ft_control_map(t_game *game)
 	int	y;
 
 	y = 0;
-	while (game-> map[y])
+	while (game->map[y])
 	{
 		x = 0;
 		while (game->map[y][x])
@@ -79,9 +79,10 @@ void	ft_control_map(t_game *game)
 
 void	ft_create_window(t_game *game)
 {
-	game->window_x = (game->columns * PIXELS);
-	game->window_y = (game->rows * PIXELS);
-	game->mlx = mlx_init(game->window_y, game->window_x, "so_long", true);
+
+	game->window_x = game->rows * PIXELS;
+	game->window_y = (game->columns * 32);
+	game->mlx = mlx_init(game->window_y, game->window_x, "so_long", 0);
 	if(!game->mlx)
 		ft_print_error_msg("Failed window Creation!");
 	ft_create_textures(game);

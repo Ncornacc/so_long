@@ -71,9 +71,8 @@ ${OBJ_DIR}%.o: ${SRC_DIR}%.c
 	@${CC} ${FLAGS} ${HEAD} -o $@ -c $< && printf "${YELLOW} Compiling: $(notdir $<) ${DEF_COLOR}"
 
 ${NAME}: ${OBJ}
-	@${CC} ${CFLAG} ${HEAD} ${OBJ} ${LFLAGS} -o ${NAME}
+	@${CC} ${FLAGS} ${HEAD} ${OBJ} ${LFLAGS} -o ${NAME}
 	@echo "${GREEN} so_long compiled!${DEF_COLOR}"
-	
 
 clean:
 	@make clean -C ${LIBFT_D}
@@ -89,6 +88,6 @@ fclean: clean
 re:	fclean all
 	@echo	"${GREEN} Cleaned and rebuild everything for so_long!${DEF_COLOR}:"
 
-.PHONY:	re, all, clean, fclean, libs
+.PHONY:	re, all, clean, fclean, libs, mem
 
 ##############################################################

@@ -49,9 +49,9 @@ void	ft_verify_map(char **map, t_game *game)
 					ft_print_error_msg(YELLOW"Map is not closed!\n");
 		}
 	}
+	ft_count_column(game);
 	ft_check_items(game);
 	ft_verify_counts(game);
-	ft_count_column(game);
 	ft_verify_win(game);
 }
 
@@ -95,26 +95,25 @@ void	ft_verify_counts(t_game *game)
 	}
 }
 
-
 void	ft_count_column(t_game *game)
 {
 	int		count_line;
 	int		tmp;
 	int		i;
 
-	game->rows = 0;
 	tmp = 0;
 	i = 0;
-	count_line = ft_strlen(game->map[0]);
+	count_line = 0;
+	while (game->map[0][count_line])
+		count_line++;
 	while (game->map[i])
 	{
-		tmp = ft_strlen(game->map[i]);
-		if (count_line != tmp)
-		{
-			ft_free_map(game);
-			ft_print_error_msg(YELLOW"Column size error");
-		}
+		tmp = 0;
+		while (game->map[i][tmp])
+			tmp++;
+		if (tmp != count_line)
+			return ;
 		i++;
 	}
-	game->rows = tmp;
+
 }
