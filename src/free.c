@@ -19,9 +19,9 @@ void	ft_free_game(t_game *game)
 	mlx_delete_image(game->mlx, game->collectables);
 	mlx_delete_image(game->mlx, game->player);
 	mlx_delete_image(game->mlx, game->exit);
-	free(game->map);
-	free(game->map_copy);
+	ft_free_map(game);
 	mlx_close_window(game->mlx);
+	free(game);
 	exit(EXIT_SUCCESS);
 }
 
@@ -32,9 +32,12 @@ void	ft_free_map(t_game *game)
 	i = 0;
 	while (i < game->rows)
 	{
+		if (game->map_copy)
+			free(game->map_copy[i]);
 		free(game->map[i]);
 		i++;
 	}
+	free(game->map_copy);
 	free(game->map);
 	game->map = NULL;
 }

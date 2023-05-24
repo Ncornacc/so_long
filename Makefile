@@ -88,6 +88,9 @@ fclean: clean
 re:	fclean all
 	@echo	"${GREEN} Cleaned and rebuild everything for so_long!${DEF_COLOR}:"
 
+mem:
+	memdetect.sh ${SRC} ${FLAGS} ${HEAD} ${LFLAGS} ${1}
+
 .PHONY:	re, all, clean, fclean, libs, mem
 
 ##############################################################

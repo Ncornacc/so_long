@@ -85,7 +85,6 @@ void	ft_create_window(t_game *game)
 	ft_draw_map(game->mlx, game);
 	mlx_key_hook(game->mlx, (mlx_keyfunc)ft_movement, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
 	ft_free_game(game);
 	return ;
 }

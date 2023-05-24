@@ -44,9 +44,6 @@ void	ft_read_map(char *argv, t_game *game)
 	char	*string;
 
 	fd_map = open(argv, O_RDONLY);
-	string = ft_calloc(1, sizeof(char));
-	if (!string)
-		ft_print_error_msg("Empty file");
 	big_string = ft_strdup("");
 	if (fd_map == -1)
 		ft_print_error_msg("File error or empty");
@@ -62,6 +59,7 @@ void	ft_read_map(char *argv, t_game *game)
 	close(fd_map);
 	game->map = ft_split(big_string, '\n');
 	game->map_copy = ft_split(big_string, '\n');
+	free(big_string);
 }
 
 int	ft_flood_fill(t_game *game, int move_x, int move_y)

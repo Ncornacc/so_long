@@ -49,7 +49,7 @@ void	ft_player_right(t_game *game)
 	game->player = mlx_texture_to_image(game->mlx, game->swap_png);
 	if (!game->player)
 		ft_print_error_msg("PLAYER right problem");
-	free(game->swap_png);
+	mlx_delete_texture(game->swap_png);
 	mlx_image_to_window(game->mlx, game->player, game->move_y
 		* 32, game->move_x * 32);
 	return ;
@@ -65,7 +65,7 @@ void	ft_player_left(t_game *game)
 	game->player = mlx_texture_to_image(game->mlx, game->swap_png);
 	if (!game->player)
 		ft_print_error_msg("PLAYER right problem");
-	free(game->swap_png);
+	mlx_delete_texture(game->swap_png);
 	mlx_image_to_window(game->mlx, game->player, game->move_y * 32,
 		game->move_x * 32);
 	return ;
