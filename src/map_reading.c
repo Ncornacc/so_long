@@ -116,12 +116,10 @@ void	ft_verify_win(t_game *game)
 {
 	int		player_x;
 	int		player_y;
-	int		y;
 	int		temporary_value;
 
 	player_y = 0;
 	player_x = 0;
-	y = 0;
 	temporary_value = game->count_collectables;
 	ft_player_position(game, &player_x, &player_y);
 	if (ft_flood_fill(game, player_x, player_y) == -1)
