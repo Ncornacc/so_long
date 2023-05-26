@@ -19,6 +19,7 @@ LIBFT	:=	${LIBFT_D}/libft.a
 LIBMLX	:=	${LIBMLX_D}/build/libmlx42.a
 
 CC		:=	gcc
+HEADER	:=	includes/so_long.h
 HEAD	:= -I includes -I ${LIBFT_D}/include -I ${LIBMLX_D}/include
 FLAGS	:=	-Wall -Werror -Wextra
 
@@ -66,7 +67,7 @@ ${LIBMLX}:
 ${LIBFT}:
 	make -C ${LIBFT_D}
 
-${OBJ_DIR}%.o: ${SRC_DIR}%.c
+${OBJ_DIR}%.o: ${SRC_DIR}%.c ${HEADER}
 	@mkdir -p ${OBJ_DIR}
 	@${CC} ${FLAGS} ${HEAD} -o $@ -c $< && printf "${YELLOW} Compiling: $(notdir $<) ${DEF_COLOR}"
 
