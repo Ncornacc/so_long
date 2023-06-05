@@ -46,10 +46,10 @@ void	ft_read_map(char *argv, t_game *game)
 	fd_map = open(argv, O_RDONLY);
 	big_string = ft_strdup("");
 	if (fd_map == -1)
-		ft_print_error_msg("File error or empty");
+		ft_print_error_msg("File error or empty", game);
 	string = get_next_line(fd_map);
 	if (!string)
-		ft_print_error_msg("Empty file");
+		ft_print_error_msg("Empty file", game);
 	while (string)
 	{
 		big_string = ft_stringjoin(big_string, string);
@@ -123,6 +123,6 @@ void	ft_verify_win(t_game *game)
 	temporary_value = game->count_collectables;
 	ft_player_position(game, &player_x, &player_y);
 	if (ft_flood_fill(game, player_x, player_y) == -1)
-		ft_print_error_msg(YELLOW"There is no posible way to win");
+		ft_print_error_msg(YELLOW"There is no posible way to win", game);
 	game->count_collectables = temporary_value;
 }

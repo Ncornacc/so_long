@@ -42,9 +42,10 @@ void	ft_free_map(t_game *game)
 	game->map = NULL;
 }
 
-void	ft_print_error_msg(char *string)
+void	ft_print_error_msg(char *string, t_game *game)
 {
 	ft_printf(RED"Error\n%s", string);
+	ft_free_game(game);
 	exit(EXIT_FAIL);
 }
 

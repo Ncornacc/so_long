@@ -30,29 +30,39 @@ void	ft_init_vars(t_game *game)
 
 void	ft_create_textures(t_game *game)
 {
-	game->swap_png = mlx_load_png("assets/sprites/floor.png");
+	ft_load(game, "assets/sprites/floor.png");
 	game->floor = mlx_texture_to_image(game->mlx, game->swap_png);
+	if (!game->floor)
+		ft_print_error_msg("FLOOR loading problem", game);
 	mlx_delete_texture(game->swap_png);
-	game->swap_png = mlx_load_png("assets/sprites/wall.png");
+	ft_load(game, "assets/sprites/wall.png");
 	game->wall = mlx_texture_to_image(game->mlx, game->swap_png);
+	if (!game->wall)
+		ft_print_error_msg("WALL loading problem", game);
 	mlx_delete_texture(game->swap_png);
-	game->swap_png = mlx_load_png("assets/sprites/weed.png");
+	ft_load(game, "assets/sprites/weed.png");
 	game->collectables = mlx_texture_to_image(game->mlx, game->swap_png);
+	if (!game->collectables)
+		ft_print_error_msg("COLLECTABLES loading problem", game);
 	mlx_delete_texture(game->swap_png);
-	game->swap_png = mlx_load_png("assets/sprites/player_right.png");
+	ft_load(game, "assets/sprites/player_right.png");
 	game->player = mlx_texture_to_image(game->mlx, game->swap_png);
+	if (!game->player)
+		ft_print_error_msg("Player loading problem", game);
 	mlx_delete_texture(game->swap_png);
-	game->swap_png = mlx_load_png("assets/sprites/exit.png");
+	ft_load(game, "assets/sprites/exit.png");
 	game->exit = mlx_texture_to_image(game->mlx, game->swap_png);
+	if (!game->exit)
+		ft_print_error_msg("COLLECTABLES loading problem", game);
 	mlx_delete_texture(game->swap_png);
 }
 
 void	ft_check_argc(int argc)
 {
 	if (argc > 2)
-		ft_print_error_msg(YELLOW"Too many arguments\n");
+		ft_print_error_msg(YELLOW"Too many arguments\n", 0);
 	if (argc < 2)
-		ft_print_error_msg(YELLOW"NO mapfile, you have to input one!\n");
+		ft_print_error_msg(YELLOW"NO mapfile, you have to input one!\n", 0);
 }
 
 void	ft_control_map(t_game *game)
@@ -67,7 +77,7 @@ void	ft_control_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (ft_strchr("PEC01", game->map[y][x]) == NULL)
-				ft_print_error_msg(YELLOW"Invalid characters!\n");
+				ft_print_error_msg(YELLOW"Invalid characters!\n", game);
 			x++;
 		}
 		y++;
@@ -80,7 +90,7 @@ void	ft_create_window(t_game *game)
 	game->window_y = (game->columns * 32);
 	game->mlx = mlx_init(game->window_y, game->window_x, "so_long", 0);
 	if (!game->mlx)
-		ft_print_error_msg("Failed window Creation!");
+		ft_print_error_msg("Failed window Creation!", game);
 	ft_create_textures(game);
 	ft_draw_map(game->mlx, game);
 	mlx_key_hook(game->mlx, (mlx_keyfunc)ft_movement, game);

@@ -21,7 +21,7 @@ void	ft_verify_mapname(char *map_name)
 	len = ft_strlen(map_name);
 	if (map_name[len - 3] != 'b' || map_name[len - 2] != 'e'
 		|| map_name[len - 4] != '.' || map_name[len - 1] != 'r')
-		ft_print_error_msg(YELLOW"File extension is wrong");
+		ft_print_error_msg(YELLOW"File extension is wrong", 0);
 }
 
 // CHECKS MAP BORDERS
@@ -46,7 +46,7 @@ void	ft_verify_map(char **map, t_game *game)
 			if ((i == 0 || i == game->rows - 1)
 				|| (x == 0 || x == game->columns - 1))
 				if (map[i][x] != '1')
-					ft_print_error_msg(YELLOW"Map is not closed!\n");
+					ft_print_error_msg(YELLOW"Map is not closed!\n", game);
 		}
 	}
 	ft_count_column(game);
@@ -85,12 +85,12 @@ void	ft_verify_counts(t_game *game)
 	if (game->count_player != 1 || game->count_exit != 1)
 	{
 		free(game);
-		ft_print_error_msg(YELLOW"Error with chraracters");
+		ft_print_error_msg(YELLOW"Error with chraracters", game);
 	}
 	if (game->count_collectables < 1)
 	{
 		free(game);
-		ft_print_error_msg(YELLOW"There are any collectibles!");
+		ft_print_error_msg(YELLOW"There are any collectibles!", game);
 	}
 }
 
@@ -111,7 +111,7 @@ void	ft_count_column(t_game *game)
 		while (game->map[i][tmp])
 			tmp++;
 		if (tmp != count_line)
-			return ;
+			ft_print_error_msg(YELLOW"There are any collectibles!", game);
 		i++;
 	}
 }

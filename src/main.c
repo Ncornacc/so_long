@@ -12,6 +12,14 @@
 
 #include "../includes/so_long.h"
 
+void	ft_load(t_game *game, char *string)
+{
+	game->swap_png = mlx_load_png(string);
+	if (!game->swap_png)
+		ft_print_error_msg("FLOOR loading problem", game);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -19,7 +27,7 @@ int	main(int argc, char **argv)
 	ft_check_argc(argc);
 	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
-		ft_print_error_msg(YELLOW"MALLOC ERROR\n");
+		ft_print_error_msg(YELLOW"MALLOC ERROR\n", 0);
 	ft_verify_mapname(argv[1]);
 	ft_read_map(argv[1], game);
 	ft_control_map(game);

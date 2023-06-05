@@ -63,7 +63,7 @@ typedef struct s_game
 void	ft_free_game(t_game *game);
 void	ft_free_map(t_game *game);
 void	ft_free_images(t_game *game);
-void	ft_print_error_msg(char *string);
+void	ft_print_error_msg(char *string, t_game *game);
 void	ft_open_exit(t_game *game);
 
 /*--------------INITIALIZATION FUNCTIONS-------------------------*/
@@ -71,6 +71,7 @@ void	ft_init_vars(t_game *game);
 void	ft_create_textures(t_game *game);
 void	ft_check_argc(int argc);
 void	ft_control_map(t_game *game);
+void	ft_load(t_game *game, char *string);
 void	ft_create_window(t_game *game);
 
 /*--------------MOVEMENT AND INPUT(hooks) FUNCTIONS---------------*/
