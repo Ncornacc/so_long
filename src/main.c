@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	ft_check_argc(argc);
 	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
-		ft_print_error_msg(YELLOW"MALLOC ERROR\n", 0);
+		ft_print_error_msg(YELLOW"MALLOC ERROR\n", game);
 	ft_verify_mapname(argv[1]);
 	ft_read_map(argv[1], game);
 	ft_control_map(game);

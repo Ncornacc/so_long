@@ -31,6 +31,7 @@ void	ft_verify_map(char **map, t_game *game)
 	int		i;
 	int		x;
 
+	ft_count_column(game);
 	while (map[game->rows])
 	{
 		while (map[game->rows][game->columns])
@@ -46,10 +47,9 @@ void	ft_verify_map(char **map, t_game *game)
 			if ((i == 0 || i == game->rows - 1)
 				|| (x == 0 || x == game->columns - 1))
 				if (map[i][x] != '1')
-					ft_print_error_msg(YELLOW"Map is not closed!\n", game);
+					ft_print_error_msg(YELLOW"Map is not closed!", 0);
 		}
 	}
-	ft_count_column(game);
 	ft_check_items(game);
 	ft_verify_counts(game);
 	ft_verify_win(game);
@@ -84,13 +84,13 @@ void	ft_verify_counts(t_game *game)
 {
 	if (game->count_player != 1 || game->count_exit != 1)
 	{
-		free(game);
-		ft_print_error_msg(YELLOW"Error with chraracters", game);
+		ft_free_map(game);
+		ft_print_error_msg(YELLOW"Error with Players or Exit", 0);
 	}
 	if (game->count_collectables < 1)
 	{
-		free(game);
-		ft_print_error_msg(YELLOW"There are any collectibles!", game);
+		ft_free_map(game);
+		ft_print_error_msg(YELLOW"There are any collectibles!", 0);
 	}
 }
 
@@ -111,7 +111,7 @@ void	ft_count_column(t_game *game)
 		while (game->map[i][tmp])
 			tmp++;
 		if (tmp != count_line)
-			ft_print_error_msg(YELLOW"There are any collectibles!", game);
+			ft_print_error_msg(YELLOW"The map is not Rectangular!", 0);
 		i++;
 	}
 }

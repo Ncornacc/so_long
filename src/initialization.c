@@ -60,9 +60,9 @@ void	ft_create_textures(t_game *game)
 void	ft_check_argc(int argc)
 {
 	if (argc > 2)
-		ft_print_error_msg(YELLOW"Too many arguments\n", 0);
+		ft_print_error_msg(YELLOW"Too many arguments", 0);
 	if (argc < 2)
-		ft_print_error_msg(YELLOW"NO mapfile, you have to input one!\n", 0);
+		ft_print_error_msg(YELLOW"NO mapfile, you have to input one!", 0);
 }
 
 void	ft_control_map(t_game *game)
@@ -77,7 +77,7 @@ void	ft_control_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (ft_strchr("PEC01", game->map[y][x]) == NULL)
-				ft_print_error_msg(YELLOW"Invalid characters!\n", game);
+				ft_print_error_msg(YELLOW"Invalid characters!", 0);
 			x++;
 		}
 		y++;
