@@ -21,7 +21,7 @@ LIBMLX	:=	${LIBMLX_D}/build/libmlx42.a
 CC		:=	gcc
 HEADER	:=	includes/so_long.h
 HEAD	:= -I includes -I ${LIBFT_D}/include -I ${LIBMLX_D}/include
-FLAGS	:=	-Wall -Werror -Wextra -fsanitize=address -g
+FLAGS	:=	-Wall -Werror -Wextra #-fsanitize=address -g
 
 LFLAGS := -L${LIBMLX_D}/build -lmlx42 -L${LIBFT_D} -lft
 ifeq ($(shell uname -s),Darwin)			# Mac
