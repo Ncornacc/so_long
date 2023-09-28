@@ -62,7 +62,7 @@ all: ${LIBMLX} ${LIBFT} ${NAME}
 
 ${LIBMLX}:
 	cmake ${LIBMLX_D} -B ${LIBMLX_D}/build
-	$(MAKE) -C ${LIBMLX_D}/build -j4
+	cmake --build ${LIBMLX_D}/build -j4
 
 ${LIBFT}:
 	make -C ${LIBFT_D}
